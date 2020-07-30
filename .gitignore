@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # virtual environment
-.ve/
+.tuto/
 
 # bashrc
 .bashrc
