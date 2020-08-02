@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from types import ModelName
+from main_types import ModelName
 
 app = FastAPI()
 
