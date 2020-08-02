@@ -13,9 +13,11 @@ async def welcome():
 async def read_item(item_id: int):
     return {"item_id": item_id}
 
+
 @app.get("/float/{f_num}")
 async def read_float(f_num: float):
     return {"float_num": f_num}
+
 
 @app.get("/model/{model_name}")
 async def get_model(model_name: ModelName):
@@ -30,3 +32,8 @@ async def get_model(model_name: ModelName):
         res["message"] = "LeCNN all the images"
 
     return res
+
+
+@app.get("/files/{file_path:path}")
+async def read_file(file_path: str):
+    return {"file_path": file_path}
