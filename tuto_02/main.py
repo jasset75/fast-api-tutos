@@ -4,12 +4,17 @@ from main_types import ModelName
 app = FastAPI()
 
 
+@app.get("/")
+async def welcome():
+    return {"welcome": "To have here or take away?. Don't forget the cutlery!"}
+
+
 @app.get("/items/{item_id}")
 async def read_item(item_id: int):
     return {"item_id": item_id}
 
 @app.get("/float/{f_num}")
-async def read_item(f_num: float):
+async def read_float(f_num: float):
     return {"float_num": f_num}
 
 @app.get("/model/{model_name}")
