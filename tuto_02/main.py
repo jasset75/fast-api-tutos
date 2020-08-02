@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from main_types import ModelName
+from fake_db import fake_items_db
 
 app = FastAPI()
 
@@ -7,6 +8,11 @@ app = FastAPI()
 @app.get("/")
 async def welcome():
     return {"welcome": "To have here or take away?. Don't forget the cutlery!"}
+
+
+@app.get("/items/")
+async def read_item_params(skip: int = 0, limit: int = 10):
+    return fake_items_db[skip : skip+limit]
 
 
 @app.get("/items/{item_id}")
