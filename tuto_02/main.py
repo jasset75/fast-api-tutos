@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from main_types import ModelName
-from fake_db import fake_items_db
+from tuto_02.main_types import ModelName
+from tuto_02.fake_db import fake_items_db
+from typing import Optional
 
 app = FastAPI()
 
@@ -16,8 +17,15 @@ async def read_item_params(skip: int = 0, limit: int = 10):
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    return {"item_id": item_id}
+async def read_item(item_id: int, q: Optional[str] = None):
+    item = {"item": None}
+    if item_id < len(fake_items_db):
+        item = fake_items_db[item_id]
+
+    if q:
+        item.update({"q": q})
+
+    return item
 
 
 @app.get("/float/{f_num}")
